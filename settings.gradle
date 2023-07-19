@@ -1,0 +1,5 @@
+rootProject.name = 'benchmark-grpc-vs-rest'
+include 'spring-boot-server'
+include 'grpc-server'
+include 'benchmark-client'
+

@@ -1,0 +1,31 @@
+version: "3.7"
+services:
+  grpc-server:
+    build:
+      context: .
+      dockerfile: /grpc-server/Dockerfile
+    ports:
+      - "50051:50051"
+    networks:
+      - app
+
+  springboot-server:
+    build:
+      context: .
+      dockerfile: /spring-boot-server/Dockerfile
+    ports:
+      - "8081:8081"
+    networks:
+      - app
+
+  benchmark-client:
+    build:
+      context: .
+      dockerfile: /benchmark-client/Dockerfile
+    ports:
+      - "8082:8082"
+    networks:
+      - app
+
+networks:
+  app: {}
