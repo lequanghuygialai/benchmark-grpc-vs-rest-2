@@ -1,34 +1,42 @@
 package com.example;
 
 import com.benchmarking.grpc.GetRequest;
-import com.benchmarking.grpc.GetResponse;
 import com.benchmarking.grpc.SampleServiceGrpc;
-import com.google.j2objc.annotations.Property;
 import io.grpc.Grpc;
 import io.grpc.InsecureChannelCredentials;
 import io.grpc.ManagedChannel;
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
+import java.util.HashMap;
+import java.util.Map;
 
 @Service
-public class SampleGrpcClientService {
-    @Value("grpcServer")
-    private String grpcServer;
-    private final SampleServiceGrpc.SampleServiceBlockingStub sampleServiceBlockingStub;
+public class SampleGrpcClientService implements InitializingBean {
+    @Autowired
+    private ApplicationProps applicationProps;
 
-    public SampleGrpcClientService() {
+    private SampleServiceGrpc.SampleServiceBlockingStub sampleServiceBlockingStub = null;
+
+    @Override
+    public void afterPropertiesSet() throws Exception {
         ManagedChannel channel = Grpc.newChannelBuilder(
-                        grpcServer,
+                        applicationProps.getGrpcServer(),
                         InsecureChannelCredentials.create())
                 .build();
 
-        this.sampleServiceBlockingStub = SampleServiceGrpc.newBlockingStub(channel);
+        sampleServiceBlockingStub = SampleServiceGrpc.newBlockingStub(channel);
     }
 
-    public GetResponse get() {
-        return sampleServiceBlockingStub.get(GetRequest.newBuilder().build());
+    public Map<Integer, Integer> get(int number) {
+        Map<Integer, Integer> map = new HashMap<>();
+
+        for (int i = 0; i < number; i++) {
+            map.put(i, sampleServiceBlockingStub.get(GetRequest.newBuilder().setNumber(i).build()).getResult());
+        }
+
+        return map;
     }
 }

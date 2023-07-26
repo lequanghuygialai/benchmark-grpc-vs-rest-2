@@ -5,105 +5,11 @@ package com.benchmarking.grpc;
 option java_multiple_files = true;
 
 message GetRequest {
-}
-
-enum E {
-  E0 = 0;
-  E1 = 1;
-  E2 = 2;
-  E3 = 3;
-  E4 = 4;
-  E5 = 5;
-}
-
-message F {
-  int32 F1 = 1;
-  int32 F2 = 2;
-  int32 F3 = 3;
-  int32 F4 = 4;
-  int32 F5 = 5;
-  int32 F6 = 6;
-  int32 F7 = 7;
-  int32 F8 = 8;
-  int32 F9 = 9;
-  int32 F10 = 10;
-}
-
-message BigObject {
-  int32 f1 = 1;
-  int32 f2 = 2;
-  int32 f3 = 3;
-  int32 f4 = 4;
-  int32 f5 = 5;
-  int32 f6 = 6;
-  int32 f7 = 7;
-  int32 f8 = 8;
-  int32 f9 = 9;
-  int32 f10 = 10;
-  string f11 = 11;
-  string f12 = 12;
-  string f13 = 13;
-  string f14 = 14;
-  string f15 = 15;
-  string f16 = 16;
-  string f17 = 17;
-  string f18 = 18;
-  string f19 = 19;
-  string f20 = 20;
-  bool f21 = 21;
-  bool f22 = 22;
-  bool f23 = 23;
-  bool f24 = 24;
-  bool f25 = 25;
-  bool f26 = 26;
-  bool f27 = 27;
-  bool f28 = 28;
-  bool f29 = 29;
-  bool f30 = 30;
-  int32 f31 = 31;
-  int32 f32 = 32;
-  int32 f33 = 33;
-  int32 f34 = 34;
-  int32 f35 = 35;
-  int32 f36 = 36;
-  int32 f37 = 37;
-  int32 f38 = 38;
-  int32 f39 = 39;
-  int32 f40 = 40;
-  double f41 = 41;
-  double f42 = 42;
-  double f43 = 43;
-  double f44 = 44;
-  double f45 = 45;
-  double f46 = 46;
-  double f47 = 47;
-  double f48 = 48;
-  double f49 = 49;
-  double f50 = 50;
-  E f51 = 51;
-  E f52 = 52;
-  E f53 = 53;
-  E f54 = 54;
-  E f55 = 55;
-  E f56 = 56;
-  E f57 = 57;
-  E f58 = 58;
-  E f59 = 59;
-  E f60 = 60;
-  F f61 = 61;
-  F f62 = 62;
-  F f63 = 63;
-  F f64 = 64;
-  F f65 = 65;
-  F f66 = 66;
-  F f67 = 67;
-  F f68 = 68;
-  F f69 = 69;
-  F f70 = 70;
+  int32 number = 1;
 }
 
 message GetResponse {
-  repeated BigObject bigObjects = 1;
+  int32 result = 1;
 }
 
 

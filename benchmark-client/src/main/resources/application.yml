@@ -2,4 +2,4 @@ server:
   port: 8082
 
 grpcServer: localhost:50051
-springBootServer: localhost:8080
+springBootServer: http://localhost:8081

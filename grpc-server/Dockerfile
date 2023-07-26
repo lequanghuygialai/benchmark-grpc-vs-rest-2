@@ -1,7 +1,5 @@
-FROM openjdk:11.0.15-jre-slim
-LABEL maintainer=huyle
-WORKDIR /app
-COPY libs libs/
-COPY classes classes/
-ENTRYPOINT ["java", "-cp", "/app/resources:/app/classes:/app/libs/*", "com.example.GrpcServerMainApplication"]
+FROM openjdk:18.0.2.1-slim
+VOLUME /tmp
+COPY ./build/libs/grpc-server-1.0-SNAPSHOT.jar app.jar
+ENTRYPOINT ["java","-jar","/app.jar"]
 EXPOSE 50051
